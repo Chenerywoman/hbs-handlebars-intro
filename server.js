@@ -49,8 +49,61 @@ app.get("/formResults", (req, res) => {
 
 app.post("/formResults", (req, res) => {
     console.log(req.body);
-    res.send("inside formResults via POST method");
+    // res.send("inside formResults via POST method");
+    res.render("formResults", {
+        email: req.body.userEmail,
+        password: req.body.userPassword
+    });
+
 });
+
+app.get("/allUsers", (req, res) => {
+    const dbUsers = [
+        {
+            id: 324342234,
+            name: "Gary",
+            city: "Oslo"
+        },
+        {
+            id: 1234555,
+            name: "Mary",
+            city: "Paris"
+        },
+        {
+            id: 987563,
+            name: "John",
+            city: "Madrid"
+        }
+    ]
+
+    res.render("allUsers", {
+        users: dbUsers
+    })
+});
+
+app.get("/allMovies", (req, res) => {
+    const dbMovies  = [
+        {
+            title: "Enola Holmes",
+            actor: "Milly Bobby Brown",
+            year: 2020
+        },
+        {
+            title: "Groundhog Day",
+            actor: "Bill Murray & Andie MacDowell",
+            year: 1993
+        },
+        {
+            title: "RBG",
+            actor: "Ruth Bader Ginsberg",
+            year: 2018
+        }
+    ];
+
+    res.render("allMovies", {
+        movies: dbMovies
+    })
+})
 
 app.get("*", (req, res) => {
     res.send("<h1> Sorry that page does not exist </h1>");
