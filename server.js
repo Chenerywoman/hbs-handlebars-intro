@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const hbs = require('hbs');
 
 // Finding  the view folder directory
 const viewsPath = path.join(__dirname, "/views");
+const partialPath = path.join(__dirname, "views/inc");
+
+hbs.registerPartials(partialPath)
 
 // setting node.js view engine to use handlebars(hbs)files
 app.set('view engine', 'hbs');
